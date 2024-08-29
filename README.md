@@ -21,12 +21,19 @@ W: install Msys2 or configure Alire to use preinstalled Msys2
 L: apt install build-essentials, git
 
 ### Install the Debugger OpenOCD
+https://openocd.org/
+
 V0.12 does not need a patch anymore
+
+
 #### Install Software on Windows
 msys2: pacman
 
 #### Install Software on Linux
 apt install openocd
+
+https://wiki.debian.org/OpenOCD
+
 
 #### Wiring
 Second RPi Pico as debugger, which ports to connect
