@@ -22,8 +22,22 @@ L: apt install build-essentials, git
 
 ### Install the Debugger OpenOCD
 V0.12 does not need a patch anymore
+#### Install Software on Windows
+msys2: pacman
+
+#### Install Software on Linux
+apt install openocd
+
+#### Wiring
+Second RPi Pico as debugger, which ports to connect
+
+build separate debug probe 
+
+#### Install Software on Probe
 
 ### Select Tool-Chain
+
+alr toolchain --select
 
 ### Select an IDE (VSCode and Emacs with Ada-Mode)
 
