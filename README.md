@@ -20,7 +20,7 @@ Alire is the Ada package manager. It manages dependancies between libraries and 
 The installer creates a desktop icon that starts a Powershell. The `PATH` is automatically extended for the `alr` binary. 
 
 ### Linux
-The downloaded archive essentially contains the file `bin/alr`. You better extract it being in your home directory. The installation path `~/bin/` most probably is already in your `PATH`.
+The downloaded archive essentially contains the only file `bin/alr`. You better extract it being in your home directory. The installation path `~/bin/` is already in your `PATH` most probably.
 
 ## Install the Build Essentials
 
@@ -39,10 +39,16 @@ $ apt install build-essentials, git
 The standard way to install your binaries on the Pico board is to copy an uf2 file to it. I highly recommend, however, to use a debugger via the Serial Wire Debug (SWD) interface.  You need the software [OpenOCD](https://openocd.org/) and a second Pico.
 
 ### Install Software on Windows
-msys2: pacman
+
+```shell
+pacman -S mingw-w64-ucrt-x86_64-openocd
+```
 
 ### Install Software on Linux
+
+```shell
 apt install openocd
+```
 
 https://wiki.debian.org/OpenOCD
 
