@@ -41,6 +41,7 @@ Second RPi Pico as debugger, which ports to connect
 build separate debug probe 
 
 #### Install Software on Probe
+https://raspberry-projects.com/pi/microcontrollers/programming-debugging-devices/debugging-using-another-pico
 
 ### Select Tool-Chain
 
