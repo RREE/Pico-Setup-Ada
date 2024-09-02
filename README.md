@@ -13,42 +13,54 @@ flowchart LR
     id1 --> id2 --> id3 --> id4 --> id5
 ```
 
-### Set-Up Alire
-setup Alire by pointing to the Alire page
+## Set-Up Alire
+Alire is the Ada package manager. It manages dependancies between libraries and tools. Download the latest version from their Github [repository](https://github.com/alire-project/alire/releases). 
 
-### Install the Build Essentials
-W: install Msys2 or configure Alire to use preinstalled Msys2
-L: apt install build-essentials, git
+### Windows
+The installer creates a desktop icon that starts a Powershell. The `PATH` is automatically extended for the `alr` binary. 
 
-### Install the Debugger OpenOCD
-https://openocd.org/
+### Linux
+The downloaded archive essentially contains the file `bin/alr`. You better extract it being in your home directory. The installation path `~/bin/` most probably is already in your `PATH`.
 
-V0.12 does not need a patch anymore
+## Install the Build Essentials
 
+You need several other tools and libraries besides a compiler and an editor like `make`, `git` for version control, `unzip`, `libusb`, etc. 
 
-#### Install Software on Windows
+### Windows
+On the first invocation of `alr` it proposes to download [Msys2](https://www.msys2.org/) and associated tools for you.  If you already have Msys2 you can [configure](https://alire.ada.dev/docs/#alr-on-windows) Alire to use the preinstalled Msys2. In that case I recommend to add the Alire installation directory to you `PATH`, e.g. in your `.profile`.
+
+### Linux
+Linux already has all the necessary tools.  In case you are missing something install it with your Linux package manager.
+```shell
+$ apt install build-essentials, git
+```
+
+## Install the Debugger OpenOCD
+The standard way to install your binaries on the Pico board is to copy an uf2 file to it. I highly recommend, however, to use a debugger via the Serial Wire Debug (SWD) interface.  You need the software [OpenOCD](https://openocd.org/) and a second Pico.
+
+### Install Software on Windows
 msys2: pacman
 
-#### Install Software on Linux
+### Install Software on Linux
 apt install openocd
 
 https://wiki.debian.org/OpenOCD
 
 
-#### Wiring
+### Hardware Wiring for a Seconds Pico as Debug Probe
 Second RPi Pico as debugger, which ports to connect
 
 build separate debug probe 
 
-#### Install Software on Probe
+### Install Software on Probe
 https://raspberry-projects.com/pi/microcontrollers/programming-debugging-devices/debugging-using-another-pico
 
-### Select Tool-Chain
+## Select Tool-Chain
 
 alr toolchain --select
 
-### Select an IDE (VSCode and Emacs with Ada-Mode)
+## Select an IDE (VSCode and Emacs with Ada-Mode)
 
-### Create the Initial Frame for Your Own Project
+## Create the Initial Frame for Your Own Project
 
-### Look at Other Examples
+## Look at Other Examples
