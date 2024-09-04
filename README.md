@@ -36,7 +36,7 @@ $ apt install build-essentials, git
 ```
 
 ## Install the Debugger OpenOCD
-The standard way to install your binaries on the Pico board is to copy an uf2 file to it. I highly recommend, however, to use a debugger via the Serial Wire Debug (SWD) interface.  You need the software [OpenOCD](https://openocd.org/) and a second Pico.
+The standard way to install your binaries on the Pico board is to copy an uf2 file to it. I highly recommend, however, to use a debugger via the Serial Wire Debug (SWD) interface.  You need the software [OpenOCD](https://openocd.org/) and a second Pico that works as a debug probe. The standard package managers for Windows and Linux provide at least version 0.12 that works with the rp2040 chips.
 
 ### Install Software on Windows
 
@@ -49,14 +49,12 @@ pacman -S mingw-w64-ucrt-x86_64-openocd
 ```shell
 apt install openocd
 ```
+You can find further information about OpenOCD on Debian at their [wiki](https://wiki.debian.org/OpenOCD).
 
-https://wiki.debian.org/OpenOCD
 
+### Seconds Pico as Debug Probe
+See the setup guide on how to install software and how to wire the second Pico board.
 
-### Hardware Wiring for a Seconds Pico as Debug Probe
-Second RPi Pico as debugger, which ports to connect
-
-build separate debug probe 
 
 ### Install Software on Probe
 https://raspberry-projects.com/pi/microcontrollers/programming-debugging-devices/debugging-using-another-pico
