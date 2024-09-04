@@ -21,7 +21,7 @@ There is a neat tiny rp2040 board from Waveshare, the [rp2040-Zero](https://www.
 
 ## Software
 
-Get the latest software from the Github [repository](https://github.com/raspberrypi/debugprobe/releases)
+Get the latest software from the Github [repository](https://github.com/raspberrypi/debugprobe/releases). As we use a Pico board as debugger, be sure to pick `debugprobe_on_pico.u2f`.
 
 
 https://raspberry-projects.com/pi/microcontrollers/programming-debugging-devices/debugging-using-another-pico

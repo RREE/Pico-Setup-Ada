@@ -36,18 +36,25 @@ $ apt install build-essentials, git
 ```
 
 ## Install the Debugger OpenOCD
-The standard way to install your binaries on the Pico board is to copy an uf2 file to it. I highly recommend, however, to use a debugger via the Serial Wire Debug (SWD) interface.  You need the software [OpenOCD](https://openocd.org/) and a second Pico that works as a debug probe. The standard package managers for Windows and Linux provide at least version 0.12 that works with the rp2040 chips.
+The standard way to install your binaries on the Pico board is to copy an uf2 file to it. I highly recommend, however, to use a debugger via the Serial Wire Debug (SWD) interface.  You first need the software [OpenOCD](https://openocd.org/) and a second Pico that works as a debug probe. The standard package managers for Windows and Linux provide at least version 0.12 that works with the rp2040 chips. Second you need the GNU debugging program `gdb`.
 
 ### Install Software on Windows
 
 ```shell
 pacman -S mingw-w64-ucrt-x86_64-openocd
+pacman -S mingw-w64-ucrt-x86_64-gdb
 ```
+
+#### USB Driver
+
+As explained in the official guide, you need to make sure that the right USB drivers are being used. Download Zadig from http://zadig.akeo.ie and run it. First select `Options / List all devices` from the menu. Then you can chose `Picoprobe (Interface 2)` and make sure it's using the `libusb-win32` driver.
+
+![Zadig](image.png)
 
 ### Install Software on Linux
 
 ```shell
-apt install openocd
+apt install openocd, gdb
 ```
 You can find further information about OpenOCD on Debian at their [wiki](https://wiki.debian.org/OpenOCD).
 
@@ -56,12 +63,10 @@ You can find further information about OpenOCD on Debian at their [wiki](https:/
 See the setup guide on how to install software and how to wire the second Pico board.
 
 
-### Install Software on Probe
-https://raspberry-projects.com/pi/microcontrollers/programming-debugging-devices/debugging-using-another-pico
-
 ## Select Tool-Chain
-
+```
 alr toolchain --select
+```
 
 ## Select an IDE (VSCode and Emacs with Ada-Mode)
 
