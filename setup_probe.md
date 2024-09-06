@@ -18,6 +18,7 @@ There is a neat tiny rp2040 board from Waveshare, the [rp2040-Zero](https://www.
 
 <img alt="rp2040-zero pinout" src="RP2040-Zero-details-7.jpg" width="600">
 
+<img alt="rp204-zero swc pins" src="image-1.png" width="300">
 
 ## Software
 
