@@ -80,6 +80,7 @@ alr toolchain --select
 ## Debug the Sample Program
 ```
 openocd -f interface/cmsis-dap.cfg -f target/rp2040.cfg -s /ucrt64/share/openocd/scripts/ -c "program test.elf verify reset exit"
+openocd -f interface/cmsis-dap.cfg -f target/rp2040.cfg -s tcl -c "program test.elf verify reset exit"
 ```
 
 ## Look at Other Examples
