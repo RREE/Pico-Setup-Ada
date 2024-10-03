@@ -78,9 +78,22 @@ alr toolchain --select
 ## build the sample program
 
 ## Debug the Sample Program
+
+### upload program
+
 ```
-openocd -f interface/cmsis-dap.cfg -f target/rp2040.cfg -s /ucrt64/share/openocd/scripts/ -c "program test.elf verify reset exit"
 openocd -f interface/cmsis-dap.cfg -f target/rp2040.cfg -s tcl -c "program test.elf verify reset exit"
 ```
+
+### Start OpenOCD for Debugging
+```
+openocd -f interface/cmsis-dap.cfg -f target/rp2040.cfg -s tcl -c "set USE_CORE 0" -c "adapter speed 5000"
+```
+
+`set USE_CORE 0` should circumvent a problem when debugging timers
+`adapter speed 5000` increases communication speed to the target
+
+Another workaround is to set `timer_hw->dbgpause` (what is that in Ada?) to `0` in your startup code.
+
 
 ## Look at Other Examples
