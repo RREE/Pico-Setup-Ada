@@ -32,11 +32,11 @@ On the first invocation of `alr` it proposes to download [Msys2](https://www.msy
 ### Linux
 Linux already has all the necessary tools.  In case you are missing something install it with your Linux package manager.
 ```shell
-$ apt install build-essentials, git
+$ apt install build-essential git
 ```
 
 ## Install the Debugger OpenOCD
-The standard way to install your binaries on the Pico board is to copy an uf2 file to it. I highly recommend, however, to use a debugger via the Serial Wire Debug (SWD) interface.  You first need the software [OpenOCD](https://openocd.org/) and a second Pico that works as a debug probe. The standard package managers for Windows and Linux provide at least version 0.12 that works with the rp2040 chips. Second you need the GNU debugging program `gdb`.
+The standard way to install your binaries on the Pico board is to copy an uf2 file to it. I highly recommend, however, to use a debugger via the Serial Wire Debug (SWD) interface.  You first need the software [OpenOCD](https://openocd.org/) and a second Pico that works as a debug probe. The standard package managers for Windows and Linux provide at least version 0.12 that works with the rp2040 chips. Second, you need the GNU debugging program `gdb`.
 
 The stock OpenOCD distributions V0.12 (Windows and Linux as well) has a nasty bug in that stops timers. See [here](https://github.com/raspberrypi/pico-sdk/issues/1622). A solution is the upstrewam sources and in the fork of the Raspberry Foundation. Perhaps there is also a version of OpenOCD that gets installed through the VSCode extension that does not show the problem, to be confirmed. 
 
@@ -62,27 +62,65 @@ apt install openocd gdb
 You can find further information about OpenOCD on Debian at their [wiki](https://wiki.debian.org/OpenOCD).
 
 
-### Seconds Pico as Debug Probe
-See the setup guide on how to install software and how to wire the second Pico board.
+### Second Pico as Debug Probe
+See the [setup guide](setup_probe.md) on how to install software and how to wire the second Pico board.
 
 
 ## Select Tool-Chain
+Run the command
 ```
 alr toolchain --select
 ```
+and select the line `gnat_arm_elf`.  If you are asked to selct `gprbuild` pick the newst one.
+
 
 ## Select an IDE (VSCode and Emacs with Ada-Mode)
 
 ## Create the Initial Frame for Your Own Project
+(this is taken almost verbatim from Jeremy Grosser's [site](https://pico-doc.synack.me/).
 
-## build the sample program
+Use Alire to create a skeleton project and add a dependency on pico_bsp.
+
+```
+alr init --bin hello_pico
+cd hello_pico
+alr with pico_bsp
+```
+
+Next, edit `hello_pico.gpr` to import pico_bsp and add the Target, Runtime, and Linker configuration near the top.
+
+```
+with "config/hello_pico_config.gpr";
+with "pico_bsp.gpr";                                          --  <
+project Hello_Pico is
+   for Target use "arm-eabi";                                 --  <
+   for Runtime ("Ada") use "light-cortex-m0p";                --  <
+   package Linker is                                          --  <
+      for Switches ("Ada") use Pico_BSP.Linker_Switches;      --  <
+   end Linker;                                                --  <
+
+   for Source_Dirs use ("src/", "config/");
+```
+
+## Build the Sample Program
+
+Build the project.
+
+```
+alr build --development
+```
+If the build was successful, there will be an ELF binary in `./bin/hello_pico`.
+
 
 ## Debug the Sample Program
 
 ### upload program
+You first have to upload the generated elf file to the target
+board. Connect the Pico_Probe via USB to your computer
+and the SWD wires from the Pico_Probe to the corresponding pins on your target Pico. You can then upload the program using OpenOCD.
 
 ```
-openocd -f interface/cmsis-dap.cfg -f target/rp2040.cfg -s tcl -c "program test.elf verify reset exit"
+openocd -f interface/cmsis-dap.cfg -f target/rp2040.cfg -s tcl -c "adapter speed 5000" -c "program bin/hello_pico verify reset exit"
 ```
 
 ### Start OpenOCD for Debugging
