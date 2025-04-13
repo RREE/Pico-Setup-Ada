@@ -71,13 +71,13 @@ Run the command
 ```
 alr toolchain --select
 ```
-and select the line `gnat_arm_elf`.  If you are asked to selct `gprbuild` pick the newst one.
+and select the line `gnat_arm_elf`.  If you are asked to select `gprbuild` pick the newest one.
 
 
 ## Select an IDE (VSCode and Emacs with Ada-Mode)
 
 ## Create the Initial Frame for Your Own Project
-(this is taken almost verbatim from Jeremy Grosser's [site](https://pico-doc.synack.me/).
+(this is taken almost verbatim from Jeremy Grosser's [site](https://pico-doc.synack.me/)).
 
 Use Alire to create a skeleton project and add a dependency on pico_bsp.
 
@@ -91,13 +91,13 @@ Next, edit `hello_pico.gpr` to import pico_bsp and add the Target, Runtime, and 
 
 ```
 with "config/hello_pico_config.gpr";
-with "pico_bsp.gpr";                                          --  <
+with "pico_bsp.gpr";                                          --  < add
 project Hello_Pico is
-   for Target use "arm-eabi";                                 --  <
-   for Runtime ("Ada") use "light-cortex-m0p";                --  <
-   package Linker is                                          --  <
-      for Switches ("Ada") use Pico_BSP.Linker_Switches;      --  <
-   end Linker;                                                --  <
+   for Target use "arm-eabi";                                 --  < add
+   for Runtime ("Ada") use "light-cortex-m0p";                --  < add
+   package Linker is                                          --  < add
+      for Switches ("Ada") use Pico_BSP.Linker_Switches;      --  < add
+   end Linker;                                                --  < add
 
    for Source_Dirs use ("src/", "config/");
 ```
